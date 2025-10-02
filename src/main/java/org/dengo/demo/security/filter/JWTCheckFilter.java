@@ -21,6 +21,28 @@ import java.util.Map;
 public class JWTCheckFilter extends OncePerRequestFilter {
   
   @Override
+  protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
+    
+    //return이 false면 체크하고 true면 체크하지 않는다
+    
+    // Preflight요청은 체크하지 않음
+    if(request.getMethod().equals("OPTIONS")){
+      return true;
+    }
+    
+    String path = request.getRequestURI();
+    
+    log.info("check uri.............." + path);
+    
+    //api/member/ 경로의 호출은 체크하지 않음
+    if(path.startsWith("/api/member/")) {
+      return true;
+    }
+    
+    return false;
+  }
+  
+  @Override
   protected void doFilterInternal(HttpServletRequest request,
                                   HttpServletResponse response,
                                   FilterChain filterChain) throws ServletException, IOException {

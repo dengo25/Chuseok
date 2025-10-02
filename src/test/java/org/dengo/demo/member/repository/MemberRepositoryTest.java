@@ -52,7 +52,7 @@ class MemberRepositoryTest {
   
   @Test
   void testRead() {
-    String email = "test@test.com";
+    String email = "john@example.com";
     Member withRole = memberRepository.getWithRole(email);
     System.out.println(withRole);
     

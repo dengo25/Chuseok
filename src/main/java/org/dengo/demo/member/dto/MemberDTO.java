@@ -1,6 +1,5 @@
 package org.dengo.demo.member.dto;
 
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
@@ -14,7 +13,6 @@ public class MemberDTO extends User {
   private String nickName;
   
   //화면쪽에서 편리하게 처리하력 string으로
-  
   private List<String> roleNames = new ArrayList<>();
   
   public MemberDTO(String email, String password,String nickName, List<String> roleNames) {
