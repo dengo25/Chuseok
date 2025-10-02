@@ -21,15 +21,17 @@ class MemberRepositoryTest {
   
   @Test
   void registerMember() {
+    memberRepository.deleteAll();
     
     for (int i = 0; i < 10; i++) {
       Member member = Member.builder()
-          .email("test" + i + "@test.com ")
+          .email("test" + i + "@test.com")
           .nickName("testName..." + i)
           .pw(passwordEncoder.encode("test"))
           .build();
       
       member.addRole(MemberRole.USER);
+      
       if (i > 5) {
         member.addRole(MemberRole.MANAGER);
         
@@ -41,9 +43,19 @@ class MemberRepositoryTest {
       }
       
       memberRepository.save(member);
+      System.out.println("Saved: " + member.getEmail() +
+          ", Roles: " + member.getMemberRoleList());
     }
     
 
+  }
+  
+  @Test
+  void testRead() {
+    String email = "test@test.com";
+    Member withRole = memberRepository.getWithRole(email);
+    System.out.println(withRole);
+    
   }
   
   

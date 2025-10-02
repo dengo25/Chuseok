@@ -8,14 +8,13 @@ import javax.crypto.SecretKey;
 import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.Map;
-import java.util.Objects;
 
 @Log4j2
 public class JWTUtil {
   
   private static String key = "1234567890123456789012345678901234567890";
   
-  public static String generateToken(Map<String, Objects> valueMap, int min) {
+  public static String generateToken(Map<String, Object> valueMap, int min) {
     SecretKey key = null;
     
     try {
