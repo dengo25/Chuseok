@@ -1,17 +1,15 @@
 package org.dengo.demo.item.service;
 
 import org.dengo.demo.item.dto.ItemDTO;
-import org.dengo.demo.item.entity.Item;
-
-import java.util.List;
+import org.dengo.demo.item.entity.ItemEntity;
 
 public interface ItemService  {
   
   Long register(ItemDTO itemDTO);
   
   
-  default Item DTOtoEntity(ItemDTO itemDTO) {
-    Item item = Item.builder()
+  default ItemEntity DTOtoEntity(ItemDTO itemDTO) {
+    ItemEntity item = ItemEntity.builder()
         .itemId(itemDTO.getItemId())
         .itemName(itemDTO.getItemName())
         .itemDesc(itemDTO.getItemDesc())
@@ -21,7 +19,7 @@ public interface ItemService  {
     return item;
   }
   
-  default ItemDTO entityToDTO(Item item) {
+  default ItemDTO entityToDTO(ItemEntity item) {
     ItemDTO itemDTO = ItemDTO.builder()
         .itemId(item.getItemId())
         .itemDesc(item.getItemDesc())
